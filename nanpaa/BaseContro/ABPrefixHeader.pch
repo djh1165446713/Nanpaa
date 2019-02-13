@@ -1,0 +1,126 @@
+//
+//  ABPrefixHeader.pch
+//  Axiba
+//
+//  Created by Peter on 16/6/7.
+//  Copyright © 2016年 Peter. All rights reserved.
+//
+
+
+#define  ______WS()         __weak __typeof(&*self) wSelf = self
+#define  ______SS()         __strong __typeof(&*wSelf) sSelf = wSelf
+
+#define kScreenWidth              [UIScreen mainScreen].bounds.size.width
+#define kScreenHeight             [UIScreen mainScreen].bounds.size.height
+#define kTPScreenScale              [[UIScreen mainScreen] bounds].size.width / 320.0f
+#define kTPNavBarHeight             self.navigationController.navigationBar.frame.size.height
+#define userMessage            [[NSUserDefaults standardUserDefaults] objectForKey:@"user"];
+
+
+#define UserAgreementUrl             @"http://nanpaa.com/agreement/private.html"
+#define UserHelpMentUrl             @"http://nanpaa.com/agreement/service.html"
+
+
+#define RACObserve(TARGET, KEYPATH) \
+({ \
+_Pragma("clang diagnostic push") \
+_Pragma("clang diagnostic ignored \"-Wreceiver-is-weak\"") \
+__weak id target_ = (TARGET); \
+[target_ rac_valuesForKeyPath:@keypath(TARGET, KEYPATH) observer:self]; \
+_Pragma("clang diagnostic pop") \
+})
+
+#define windowKey                   [UIApplication sharedApplication].keyWindow
+
+#define WEAKOBJECT(weakObject,object) __weak typeof(object) (weakObject) = object
+
+
+// 内网
+//#define URLdomain @"http://192.168.1.133:8090/"
+
+//#define URLdomain @"http://192.168.1.178:8080/"
+
+// 外网
+//#define URLdomain @"https://nanpaa.qvbian.com/"
+#define URLdomain @"http://www.nanpaa.com:8095/"
+
+//          http://192.168.1.251:8811/      测试/开发环境
+
+#define AppKey   @"58046ff567e58e553100117e"
+#define APPSecret   @"t5xlcnoc4cl7gsge2avppyjsuqfpt43y"
+
+// 分享参数
+
+#define shareInput @""
+#define shareURL @"http://nanpaa.com/share/index.html"
+#define shareTitText @""
+
+#define HEXCOLORA(rgbValue, a)  [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16)) / 255.0 green:((float)((rgbValue & 0xFF00) >> 8)) / 255.0 blue:((float)(rgbValue & 0xFF)) / 255.0 alpha:a]
+#define HEXCOLOR(rgbValue)      HEXCOLORA(rgbValue, 1.0)
+#define RGB(r,g,b)          [   UIColor colorWithRed:r/255. green:g/255. blue:b/255. alpha:1.]
+
+#define OutputPath [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/CDPVideoRecordMovie.mp4"]
+#define videoPath  [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"sendVideo.mp4"]
+
+#define videoMyPath  [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"MyVideo.mp4"]
+
+
+#define CustomStr(key) [(AppDelegate *)[[UIApplication sharedApplication] delegate] showText:(key)];
+
+
+#import "AppDelegate.h"
+#import "ViewUtils.h"
+#import "Masonry.h"
+#import "AFNetworking.h"
+#import "NanpanUrl.h"
+#import "AFHTTPSessionManager.h"
+#import "EMSDK.h"
+#import "DJHttpApi.h"
+#import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
+#import "MBProgressHUD.h"
+#import "DJHManager.h"
+
+
+#define AvatarURL @"app/user/uploadAvatar"  // 上传头像
+#define BackImgURL @"app/user/uploadBackground"  // 上传背景图
+#define getCoinList @"app/payment/getCoinList"  //获取金币往来列表
+#define UpVideoURL  @"app/user/uploadVideoIntroduce"   // 上传视频简介
+
+#define UpUserInfo  @"app/user/modifyUserInfo" // 修改个人信息
+#define GetUserInfo  @"app/user/getUserInfo" //获取个人信息
+#define nearByUrl   @"app/homepage/getNearbyPeople" //请求附近的人
+#define Sear1chUrl   @"app/homepage/search" //搜索用户
+
+#define postLocationUrl @"app/user/position" //上传位置信息
+#define PositionCityUrl  @"app/user/positionCity"  // 上报位置信息(城市)
+
+#define SaveLogUrl   @"app/startup/saveLog" // 用户信息搜集
+#define recommenUrl   @"app/homepage/recommendUser" // 推荐用户
+#define payMentUrl  @"app/payment/cost" //花费金币
+#define BlackListUrl   @"app/relation/getBlacklist" // 黑名单
+#define deleteBlackUrl @"app/relation/deleteBlacklist"  // 取消黑名单
+#define AddBlacktUrl   @"app/relation/addBlacklist" // 添加黑名单
+#define searchCountryUrl @"app/homepage/searchCity" //搜索城市
+#define ModifyUserInfoUrl @"app/user/modifyUserInfo"  //修改个人信息
+#define OtherUserUrl   @"app/user/getOtherUserInfo"   // 获取他人信息
+
+#define deleteFollowUrl @"app/relation/deleteFollowing" // 取消关注
+#define AddFollowUrl   @"app/relation/addFollowing" // 添加关注
+#define GetFollowUrl   @"app/relation/getFollower" // 获取粉丝列表
+#define GetFollowIngUrl   @"app/relation/getFollowing" // 获取关注列表
+#define GetBlackUrl   @"app/relation/getBlacklist" // 获取黑名单
+#define payCoinUrl   @"app/payment/purchaseResult" // 上传金币购买结果
+
+#define AddFollowersUrl @"app/relation/addFollowings"  // 群体关注
+
+#define LogoutUrl  @"app/out/logout" // 注销
+#define ExitUrl @"app/out/exit" // 杀死程序
+#define  RegistUrl @"app/login/register" // 注册
+#define  LoginUrl  @"app/login/login" // 登录
+#define  ThirdLoginUrl  @"app/login/thirdPartLogin"  // 第三方登录
+#define SaveLogUrl @"app/startup/saveLog"  // 用户信息收集
+
+#ifndef __OPTIMIZE__
+#define NSLog(...) printf("%f %s\n",[[NSDate date]timeIntervalSince1970],[[NSString stringWithFormat:__VA_ARGS__]UTF8String]);
+#endif

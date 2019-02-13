@@ -1,0 +1,54 @@
+//
+//  HalfPageRoundScrollView.m
+//  nanpaa
+//
+//  Created by bianKerMacBook on 17/1/23.
+//  Copyright © 2017年 bianKerMacBookDJH. All rights reserved.
+//
+
+#import "HalfPageRoundScrollView.h"
+
+@implementation HalfPageRoundScrollView
+
+-(instancetype)initWithFrame:(CGRect)frame
+{
+    self=[super initWithFrame:frame];
+    if (self) {
+        //添加ScrollView
+        [self addScrollView];
+    }
+    return self;
+}
+
+
+#pragma mark---添加ScrollView
+-(void)addScrollView
+{
+    _myScrollView=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight / 2)];
+    _myScrollView.pagingEnabled = YES;
+    _myScrollView.clipsToBounds = YES;
+    _myScrollView.bounces = NO;
+    _myScrollView.showsHorizontalScrollIndicator = NO;
+    
+    _myScrollView.contentSize = CGSizeMake(kScreenWidth, kScreenHeight * 2);
+    [self addSubview:_myScrollView];
+}
+
+#pragma mark---修改hitTest方法
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+    UIView *view = [super hitTest:point withEvent:event];
+    if ([view isEqual:self]){
+        for (UIView *subview in _myScrollView.subviews){
+            CGPoint offset = CGPointMake(point.x - _myScrollView.frame.origin.x + _myScrollView.contentOffset.x - subview.frame.origin.x, point.y - _myScrollView.frame.origin.y + _myScrollView.contentOffset.y - subview.frame.origin.y);
+            
+            if ((view = [subview hitTest:offset withEvent:event])){
+                return view;
+            }
+        }
+        return _myScrollView;
+    }
+    return view;
+}
+
+@end

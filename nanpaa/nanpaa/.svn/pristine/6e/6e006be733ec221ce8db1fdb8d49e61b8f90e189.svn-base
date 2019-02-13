@@ -1,0 +1,13 @@
+//
+//  HalfPageRoundScrollView.h
+//  nanpaa
+//
+//  Created by bianKerMacBook on 17/1/23.
+//  Copyright © 2017年 bianKerMacBookDJH. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface HalfPageRoundScrollView : UIView
+@property (nonatomic, strong)UIScrollView *myScrollView;
+@end
